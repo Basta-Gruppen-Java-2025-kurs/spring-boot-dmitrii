@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: hello-spring
+server:
+  port: 8081
+
+app.welcome-message: welcome to default message
