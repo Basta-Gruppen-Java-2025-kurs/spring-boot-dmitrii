@@ -1,16 +1,21 @@
 package com.example.hello_spring;
 
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.time.LocalDateTime;
+import java.util.*;
 
 @RestController
 public class InfoController {
+    @Value("${spring.application.name}")
+    String appName;
+
     @GetMapping("/info")
     public String info() {
-        return "Spring Boot makes Java web apps easy!";
+        return "Spring Boot makes Java web apps easy!\n" + appName;
     }
 
     public record Course(String name, String teacher) {}
@@ -43,6 +48,39 @@ public class InfoController {
                 .path("/personData/" + person.name).toUriString());
 
         return "Name: " + person.name + "<br/>\n" + person.address;
+    }
+
+    ArrayList<String> elements = new ArrayList<>();
+
+    private String joinElements() {
+        return String.join(", ", elements);
+    }
+
+    @GetMapping("/add/{elem}")
+    public String addElement(@PathVariable(required = false) String elem) {
+        if (elem != null) {
+            elements.add(elem);
+        }
+        return joinElements();
+    }
+
+    @GetMapping("/add")
+    public String getElements() {
+        return joinElements();
+    }
+
+    Map<String, String> dictionary = Map.ofEntries(
+            Map.entry("One", "the One"),
+            Map.entry("Two", "Second")
+    );
+
+    @GetMapping("/find")
+    public String findItem(@RequestParam String id) {
+        if (dictionary.containsKey(id)) {
+            return dictionary.get(id);
+        } else {
+            return "Item with identifier \"" + id + "\" not found";
+        }
     }
 
 }

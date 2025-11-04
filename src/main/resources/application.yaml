@@ -2,6 +2,8 @@ spring:
   application:
     name: hello-spring
 server:
-  port: 8081
+  port: 8080
 
 app.welcome-message: welcome to default message
+
+spring.devtools.restart.enabled: false
