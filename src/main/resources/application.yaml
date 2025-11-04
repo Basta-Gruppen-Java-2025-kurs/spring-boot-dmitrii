@@ -7,3 +7,5 @@ server:
 app.welcome-message: welcome to default message
 
 spring.devtools.restart.enabled: false
+
+calc.factor: 2

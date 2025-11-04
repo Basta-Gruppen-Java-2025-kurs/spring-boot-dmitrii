@@ -7,3 +7,5 @@ server:
 app.welcome-message: welcome to Developer message
 
 spring.devtools.restart.enabled: true
+
+calc.factor: 100
