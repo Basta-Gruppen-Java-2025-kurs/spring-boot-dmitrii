@@ -1,17 +1,18 @@
-package com.example.hello_spring;
+package com.example.hello_spring.service;
 
 import java.util.HashMap;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+
+@Service
 public class CalculatorService {
 
-    public CalculatorService(int factor) {
-        this.factor = factor;
-    }
-
-    private final int factor;
+    @Value("${calc.factor}")
+    int factor;
 
     public String add(int n1, int n2) {
-        return factor + " " + (n1 + n2) * factor;
+        return "" + (n1 + n2) * factor;
     }
 
     public String sub(int n1, int n2) {

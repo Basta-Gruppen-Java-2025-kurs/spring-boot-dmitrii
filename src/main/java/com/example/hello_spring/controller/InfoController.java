@@ -1,4 +1,4 @@
-package com.example.hello_spring;
+package com.example.hello_spring.controller;
 
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Value;

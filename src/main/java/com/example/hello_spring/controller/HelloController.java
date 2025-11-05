@@ -1,5 +1,6 @@
-package com.example.hello_spring;
+package com.example.hello_spring.controller;
 
+import com.example.hello_spring.model.Greeting;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
