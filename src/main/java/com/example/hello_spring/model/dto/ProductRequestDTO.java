@@ -1,29 +1,18 @@
-package com.example.hello_spring.model;
+package com.example.hello_spring.model.dto;
 
-public class Product {
-
-    private int id;
+public class ProductRequestDTO {
     private String name;
     private double price;
 
     private String internalRating;
 
-    public Product() {
-    }
-
-    public Product(int id, String name, double price, String internalRating) {
-        this.id = id;
+    public ProductRequestDTO(String name, double price) {
         this.name = name;
         this.price = price;
-        this.internalRating = internalRating;
+        this.internalRating = "";
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    public ProductRequestDTO() {
     }
 
     public String getName() {

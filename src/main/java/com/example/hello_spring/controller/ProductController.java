@@ -1,6 +1,8 @@
 package com.example.hello_spring.controller;
 
 import com.example.hello_spring.model.Product;
+import com.example.hello_spring.model.dto.ProductRequestDTO;
+import com.example.hello_spring.model.dto.ProductResponseDTO;
 import com.example.hello_spring.service.ProductService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -37,10 +39,10 @@ public class ProductController {
     }
 
     @PostMapping
-    public ResponseEntity<Product> addProduct(@RequestParam String name, @RequestParam double price) {
-        Product p = new Product(-1, name, price);
-        p = service.addProduct(p);
-        return ResponseEntity.ok(p);
+    public ResponseEntity<ProductResponseDTO> addProduct(@RequestParam String name, @RequestParam double price) {
+        ProductRequestDTO p = new ProductRequestDTO(name, price);
+        ProductResponseDTO r = service.addProduct(p);
+        return ResponseEntity.ok(r);
     }
 
     @DeleteMapping("/{id}")
@@ -49,10 +51,16 @@ public class ProductController {
         return (removed ? ResponseEntity.noContent() : ResponseEntity.notFound()).build();
     }
 
+//    @PutMapping("/{id}")
+//    public ResponseEntity<Product> updateProduct(@PathVariable int id, @RequestParam String name, @RequestParam
+//    double price) {
+//        Product p = service.updateProduct(id, new Product(-1, name, price));
+//        return p != null ? ResponseEntity.ok(p) : ResponseEntity.notFound().build();
+//    }
+
     @PutMapping("/{id}")
-    public ResponseEntity<Product> updateProduct(@PathVariable int id, @RequestParam String name, @RequestParam
-    double price) {
-        Product p = service.updateProduct(id, new Product(-1, name, price));
+    public ResponseEntity<ProductResponseDTO> updateProduct(@PathVariable int id, @RequestBody ProductRequestDTO productDTO) {
+        ProductResponseDTO p = service.updateProduct(id, productDTO);
         return p != null ? ResponseEntity.ok(p) : ResponseEntity.notFound().build();
     }
 }
