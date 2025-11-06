@@ -33,4 +33,14 @@ public class ThingRepository {
                 (quality.isBlank() || th.getQualities().stream().anyMatch(q -> q.toLowerCase().contains(quality.toLowerCase()))))
                 .toList();
     }
+
+    private long getMaxIndex() {
+        return things.stream().map(Thing::getId).max(Long::compare).orElse(0L);
+    }
+
+    public Optional<Thing> save(Thing thing) {
+        thing.setId(getMaxIndex() + 1);
+        things.add(thing);
+        return Optional.of(thing);
+    }
 }
