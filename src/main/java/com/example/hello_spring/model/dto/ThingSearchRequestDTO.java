@@ -1,21 +1,22 @@
 package com.example.hello_spring.model.dto;
 
-public class ThingResponseDTO {
-    private long id;
+public class ThingSearchRequestDTO {
+    long id;
     private String name;
     private String kind;
-    private String[] qualities;
+    private String quality;
 
-    public ThingResponseDTO(long id, String name, String kind, String[] qualities) {
+    public ThingSearchRequestDTO(long id, String name, String kind, String quality) {
         this.id = id;
         this.name = name;
         this.kind = kind;
-        this.qualities = qualities;
+        this.quality = quality;
     }
 
-    public ThingResponseDTO() {
+    public ThingSearchRequestDTO() {
     }
 
+    //region getters & setters
     public long getId() {
         return id;
     }
@@ -40,11 +41,12 @@ public class ThingResponseDTO {
         this.kind = kind;
     }
 
-    public String[] getQualities() {
-        return qualities;
+    public String getQuality() {
+        return quality;
     }
 
-    public void setQualities(String[] qualities) {
-        this.qualities = qualities;
+    public void setQuality(String quality) {
+        this.quality = quality;
     }
+    //endregion
 }

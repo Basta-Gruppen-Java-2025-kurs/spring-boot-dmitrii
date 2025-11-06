@@ -23,4 +23,14 @@ public class ThingRepository {
     public Optional<Thing> findById(long id) {
         return things.stream().filter(t -> t.getId() == id).findFirst();
     }
+
+    public List<Thing> findByParams(long id, String name, String kind, String quality) {
+        return things.stream()
+                .filter(th ->
+                (id <= 0 || th.getId() == id) &&
+                (name.isBlank() || th.getName().toLowerCase().contains(name.toLowerCase())) &&
+                (kind.isBlank() || th.getKind().toLowerCase().contains(kind.toLowerCase())) &&
+                (quality.isBlank() || th.getQualities().stream().anyMatch(q -> q.toLowerCase().contains(quality.toLowerCase()))))
+                .toList();
+    }
 }
